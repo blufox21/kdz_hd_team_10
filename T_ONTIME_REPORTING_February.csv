@@ -1,4 +1,4 @@
-year,quarter,month,flight_date,reporting_airline,tail_number,flight_number,origin,dest,crs_dep_time,dep_time,dep_delay_minutes,cancelled,cancelletion_code,air_time,distance,weather_delay
+year,quarter,month,flight_date,reporting_airline,tail_number,flight_number,origin,dest,crs_dep_time,dep_time,dep_delay_minutes,cancelled,cancellation_code,air_time,distance,weather_delay
 2021,1,2,2/1/2021 12:00:00 AM,9E,N134EV,4892,CMH,MSP,1630,1626,0.00,0.00,,97.00,626.00,
 2021,1,2,2/1/2021 12:00:00 AM,9E,N134EV,4892,MSP,CMH,1245,1238,0.00,0.00,,86.00,626.00,
 2021,1,2,2/1/2021 12:00:00 AM,9E,N136EV,4921,CMH,MSP,0800,0752,0.00,0.00,,91.00,626.00,
