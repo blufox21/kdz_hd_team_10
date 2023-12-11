@@ -1,4 +1,4 @@
-year,quarter,month,flight_date,reporting_airline,tail_number,flight_number,origin,dest,crs_dep_time,dep_time,dep_delay_minutes,cancelled,cancelletion_code,air_time,distance,weather_delay
+year,quarter,month,flight_date,reporting_airline,tail_number,flight_number,origin,dest,crs_dep_time,dep_time,dep_delay_minutes,cancelled,cancellation_code,air_time,distance,weather_delay
 2021,1,1,1/1/2021 12:00:00 AM,9E,N166PQ,5272,ATL,DAY,1802,1803,1.00,0.00,,75.00,432.00,
 2021,1,1,1/1/2021 12:00:00 AM,9E,N298PQ,5141,DAY,ATL,0600,0615,15.00,0.00,,87.00,432.00,0.00
 2021,1,1,1/1/2021 12:00:00 AM,9E,N317CA,4735,CMH,MSP,1300,1256,0.00,0.00,,92.00,626.00,
