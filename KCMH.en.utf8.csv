@@ -1,4 +1,4 @@
-"Local time in Columbus / Port Columbus (airport)";"T";"P0";"P";"U";"DD";"Ff";"ff10";"WW";"W'W'";"c";"VV";"Td";
+"local_datetime";"t_air_temperature";"p0_sea_lvl";"p_station_lvl";"u_humidity";"dd_wind_direction";"ff_wind_speed";"ff10_max_gust_value";"ww_present";"ww_recent";"c_total_clouds";"vv_horizontal_visibility";"td_temperature_dewpoint";
 "30.04.2021 23:51";"8.0";"743.4";"766.1";"57";"Wind blowing from the north-west";"4";"";"";"";"No clouds";"16.0";"0.0";
 "30.04.2021 22:51";"9.0";"743.0";"765.6";"58";"Wind blowing from the north-west";"5";"";"";"";"No clouds";"16.0";"1.0";
 "30.04.2021 21:51";"9.0";"743.0";"765.6";"50";"Wind blowing from the north-west";"4";"";"";"";"No clouds";"16.0";"-1.0";
