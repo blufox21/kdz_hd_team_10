@@ -1,9 +1,3 @@
-# Weather station Columbus / Port Columbus (airport), USA, METAR=KCMH,selection from 01.01.2021 till 01.05.2021, all days
-# Encoding: UTF-8
-# The data is provided by the website "Reliable Prognosis", rp5.ru
-# If you use the data, please indicate the name of the website.
-# For meteorological parameters see the address http://rp5.ru/metar.php?metar=KCMH&lang=en
-#
 "Local time in Columbus / Port Columbus (airport)";"T";"P0";"P";"U";"DD";"Ff";"ff10";"WW";"W'W'";"c";"VV";"Td";
 "30.04.2021 23:51";"8.0";"743.4";"766.1";"57";"Wind blowing from the north-west";"4";"";"";"";"No clouds";"16.0";"0.0";
 "30.04.2021 22:51";"9.0";"743.0";"765.6";"58";"Wind blowing from the north-west";"5";"";"";"";"No clouds";"16.0";"1.0";
