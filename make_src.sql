@@ -43,7 +43,23 @@ create table if not exists kdz_10_src.flights (
 	loaded_ts timestamp not null default (now()) 
 );
 
+drop table if exists kdz_10_src.flights_cancellation;
+create table if not exists kdz_10_src.flights_cancellation (
+	Code varchar(10),
+	Description varchar(50),
+	loaded_ts timestamp not null default (now())
+);
 
-\copy kdz_10_src.weather(local_datetime,t_air_temperature,p0_sea_lvl,p_station_lvl,u_humidity,dd_wind_direction,ff_wind_speed,ff10_max_gust_value,ww_present,ww_recent,c_total_clouds,vv_horizontal_visibility,td_temperature_dewpoint) from 'C:\Users\Max\Desktop\work\study\HD\KDZ\KCMH.en.utf8.csv' with delimiter ';' CSV HEADER;
+drop table if exists kdz_10_src.flights_carriers;
+create table if not exists kdz_10_src.flights_carriers (
+	Code varchar(10),
+	Description varchar(100),
+	loaded_ts timestamp not null default (now())
+);
 
-\copy kdz_10_src.flights(year,quarter,month,flight_date,reporting_airline,tail_number,flight_number,origin,dest,crs_dep_time,dep_time,dep_delay_minutes,cancelled,cancellation_code,air_time,distance,weather_delay) from 'C:\Users\Max\Desktop\work\study\HD\KDZ\T_ONTIME_REPORTING_April.csv' with delimiter ',' CSV HEADER;
+\copy kdz_10_src.weather(local_datetime,t_air_temperature,p0_sea_lvl,p_station_lvl,u_humidity,dd_wind_direction,ff_wind_speed,ff10_max_gust_value,ww_present,ww_recent,c_total_clouds,vv_horizontal_visibility,td_temperature_dewpoint) from 'C:\Users\Max\Desktop\work\study\HD\KDZ_git\kdz_hd_team_10\KCMH.en.utf8.csv' with delimiter ';' CSV HEADER;
+
+\copy kdz_10_src.flights(year,quarter,month,flight_date,reporting_airline,tail_number,flight_number,origin,dest,crs_dep_time,dep_time,dep_delay_minutes,cancelled,cancellation_code,air_time,distance,weather_delay) from 'C:\Users\Max\Desktop\work\study\HD\KDZ_git\kdz_hd_team_10\T_ONTIME_REPORTING_April.csv' with delimiter ',' CSV HEADER;
+
+\copy kdz_10_src.flights_cancellation(Code, Description) from 'C:\Users\Max\Desktop\work\study\HD\KDZ_git\kdz_hd_team_10\L_CANCELLATION.csv' with delimiter ',' CSV HEADER;
+\copy kdz_10_src.flights_carriers(Code, Description) from 'C:\Users\Max\Desktop\work\study\HD\KDZ_git\kdz_hd_team_10\L_UNIQUE_CARRIERS.csv' with delimiter ',' CSV HEADER;
