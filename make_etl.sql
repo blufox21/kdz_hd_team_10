@@ -9,7 +9,7 @@ select distinct
 	to_timestamp(crs_dep_time, 'HH24MI')::time as crs_dep_time,
 	air_time,
 	dep_delay_minutes,
-	cancelled,
+	CAST(CAST(cancelled as int) as bool) as cancelled,
 	cancellation_code,
 	weather_delay,
 	reporting_airline,
