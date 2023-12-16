@@ -1,6 +1,6 @@
-drop table if exists kdz_10_staging.flights;
+drop table if exists kdz_10_staging.weather;
 CREATE TABLE kdz_10_staging.weather (
-  icao_code varchar(10) NOT NULL,
+  icao varchar(10) NOT NULL,
   local_datetime timestamptz NOT NULL,
   t_air_temperature numeric(3, 1)  NULL,
   p0_sea_lvl numeric(4, 1) NULL,
@@ -15,7 +15,7 @@ CREATE TABLE kdz_10_staging.weather (
   vv_horizontal_visibility numeric(3, 1) NULL,
   td_temperature_dewpoint numeric(3, 1) NULL,
   loaded_ts timestamp DEFAULT now(),
-  PRIMARY KEY (icao_code, local_datetime)
+  PRIMARY KEY (icao, local_datetime)
 ); 
 
 drop table if exists kdz_10_staging.flights;
@@ -41,3 +41,16 @@ CREATE TABLE kdz_10_staging.flights (
   CONSTRAINT flights_pkey PRIMARY KEY (flight_date, flight_number, origin, dest, crs_dep_time)
 );
 
+drop table if exists kdz_10_staging.flights_cancellation;
+CREATE TABLE kdz_10_staging.flights_cancellation (
+    Code varchar(10) PRIMARY KEY,
+	Description varchar(50),
+	loaded_ts timestamp not null default (now())
+);
+
+drop table if exists kdz_10_staging.flights_carriers;
+CREATE TABLE kdz_10_staging.flights_carriers (
+    Code varchar(10) PRIMARY KEY,
+	Description varchar(100),
+	loaded_ts timestamp not null default (now())
+);
