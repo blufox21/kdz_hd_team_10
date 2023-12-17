@@ -48,7 +48,7 @@ select distinct
 	origin,
 	dest
 from kdz_10_src.flights, kdz_10_etl.flights_ts
-where loaded_ts >= ts1 and loaded_ts <=ts2;
+where (loaded_ts >= ts1 and loaded_ts <=ts2)and(origin='CMH');
 
 drop table if exists kdz_10_etl.weather;
 create table if not exists kdz_10_etl.weather as 
