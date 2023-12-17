@@ -1,10 +1,10 @@
 -- Обработаем добавление лишь новых данных
-drop table if exists kdz_10_etl.flights_loaded;
+--drop table if exists kdz_10_etl.flights_loaded;
 create table if not exists kdz_10_etl.flights_loaded(
 	loaded_ts timestamp not NULL
 );
 
-drop table if exists kdz_10_etl.weather_loaded;
+--drop table if exists kdz_10_etl.weather_loaded;
 create table if not exists kdz_10_etl.weather_loaded(
 	loaded_ts timestamp not NULL
 );
@@ -48,7 +48,7 @@ select distinct
 	origin,
 	dest
 from kdz_10_src.flights, kdz_10_etl.flights_ts
-where loaded_ts > ts1 and loaded_ts <=ts2;
+where loaded_ts >= ts1 and loaded_ts <=ts2;
 
 drop table if exists kdz_10_etl.weather;
 create table if not exists kdz_10_etl.weather as 
@@ -68,7 +68,7 @@ select distinct
 	vv_horizontal_visibility,
 	td_temperature_dewpoint
 from kdz_10_src.weather, kdz_10_etl.weather_ts
-where loaded_ts > ts1 and loaded_ts <=ts2;
+where loaded_ts >= ts1 and loaded_ts <=ts2;
 
 
 -- шаг 03. Запись в целевую таблицу в режиме upsert
@@ -152,28 +152,31 @@ insert into kdz_10_staging.flights
 ;
 
 insert into kdz_10_staging.flights_cancellation 
-  select code, description, now() as loaded_ts from kdz_10_src.flights_cancellation;
+  select code, description, now() as loaded_ts from kdz_10_src.flights_cancellation
+  on conflict(code) 
+  do update
+  set
+  code = excluded.code,
+  description = excluded.description;
 
 insert into kdz_10_staging.flights_carriers
-  select code, description, now() as loaded_ts from kdz_10_src.flights_carriers;
+  select code, description, now() as loaded_ts from kdz_10_src.flights_carriers
+  on conflict(code) 
+  do update
+  set
+  code = excluded.code,
+  description = excluded.description;
 
 -- шаг 04. обновление последней известной метки loaded_ts
-delete from kdz_10_etl.flights_loaded 
-where exists (select 1 from kdz_10_etl.flights_ts);
-
-delete from kdz_10_etl.weather_loaded 
-where exists (select 1 from kdz_10_etl.weather_ts);
-
 insert into kdz_10_etl.flights_loaded
-select ts2 
+select coalesce(ts2, (SELECT max(loaded_ts) from kdz_10_etl.flights_loaded))
 from kdz_10_etl.flights_ts
 where exists (select 1 from kdz_10_etl.flights_ts);
 
-insert into kdz_10_etl.weather_ts
-select ts2 
+insert into kdz_10_etl.weather_loaded
+select coalesce(ts2, (SELECT max(loaded_ts) from kdz_10_etl.weather_loaded))
 from kdz_10_etl.weather_ts
 where exists (select 1 from kdz_10_etl.weather_ts);
 
 
---drop table etl.load_cust_03_01;
 
