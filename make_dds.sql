@@ -1,0 +1,1 @@
+create schema kdz_10_dds;
